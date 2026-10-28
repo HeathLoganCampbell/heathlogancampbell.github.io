@@ -23,9 +23,9 @@
     </ul>
 
     <h2>most listened to music</h2>
-    <ul>
+    <ol>
       <li id="track"></li>
-    </ul>
+    </ol>
   </main>
 
   <script>
@@ -162,7 +162,8 @@
     let trackIndex = Math.floor(Math.random() * tracks.length);
 
     function showTrack() {
-      track.textContent = (trackIndex + 1) + '. ' + tracks[trackIndex];
+      track.value = trackIndex + 1;
+      track.textContent = tracks[trackIndex];
       track.style.opacity = 1;
       trackIndex = (trackIndex + 1) % tracks.length;
     }
