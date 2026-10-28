@@ -156,7 +156,7 @@
     let trackIndex = Math.floor(Math.random() * tracks.length);
 
     function nextTrack() {
-      track.textContent = tracks[trackIndex];
+      track.textContent = (trackIndex + 1) + '. ' + tracks[trackIndex];
       trackIndex = (trackIndex + 1) % tracks.length;
     }
 
