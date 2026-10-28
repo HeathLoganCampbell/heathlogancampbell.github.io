@@ -240,7 +240,6 @@
     const CW = 65;
     const CH = 33;
     const RAMP = '.:=*#@';
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const corners = [];
     for (const x of [-1, 1]) {
@@ -444,7 +443,7 @@
       if (held.has('down')) pitch += spin;
       if (held.size) lastInput = now;
 
-      if (!still && !paused && !held.size) {
+      if (!paused && !held.size) {
         const idle = now - lastInput;
         if (idle > IDLE_MS) {
           const ramp = Math.min(1, (idle - IDLE_MS) / RAMP_MS);
