@@ -11,12 +11,14 @@
     #num { position: absolute; right: 100%; margin-right: 0.2em; }
     #num, #track { transition: opacity 0.2s ease; }
     #cube { display: block; width: 65ch; margin: 90px auto 0; font-size: 0.7em; line-height: 1.05; color: #444; cursor: pointer; }
-    #hello { border: 1px solid #444; padding: 1.5em; background: #fff; color: #444; }
-    #hello-text { margin: 0; font-size: 2em; }
-    #hello form { margin: 0.75em 0 0; text-align: right; }
-    #hello button { font: inherit; padding: 0; border: 0; background: none; color: #00c; cursor: pointer; }
-    #hello button:hover { text-decoration: underline; }
-    #hello button:focus-visible { outline: 1px dotted #00c; outline-offset: 2px; }
+    #hello { position: relative; border: 0; padding: 0; background: #fff; color: #444; }
+    #hello-frame { margin: 0; font-size: 0.85em; line-height: 1.35; }
+    #hello-text { position: absolute; top: 1.05em; left: 1.2em; margin: 0; }
+    #hello form { position: absolute; right: 1.1em; bottom: 1.2em; margin: 0; }
+    #hello button { font: inherit; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
+    #hello button:focus-visible { outline: 1px dotted #999; outline-offset: 3px; }
+    #hello:focus { outline: none; }
+    #hello::backdrop { background: transparent; }
     @media (prefers-reduced-motion: reduce) { #num, #track { transition: none; } }
   </style>
 </head>
@@ -39,7 +41,14 @@
 
     <pre id="cube" aria-hidden="true"></pre>
 
-    <dialog id="hello" aria-label="Ni Howdy">
+    <dialog id="hello" aria-label="Ni Howdy" tabindex="-1">
+      <pre id="hello-frame" aria-hidden="true">+------------------------------+
+|                              |
+|                              |
+|                              |
+|                              |
+|                              |
++------------------------------+</pre>
       <p id="hello-text">ni howdy</p>
       <form method="dialog">
         <button>[ OK ]</button>
@@ -476,7 +485,10 @@
     window.addEventListener('blur', () => held.clear());
 
     const hello = document.getElementById('hello');
-    cube.addEventListener('click', () => hello.showModal());
+    cube.addEventListener('click', () => {
+      hello.showModal();
+      hello.focus();
+    });
 
     drawCube();
     setInterval(tick, 40);
