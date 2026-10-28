@@ -10,7 +10,7 @@
     #track-list li { position: relative; }
     #num { position: absolute; right: 100%; margin-right: 0.2em; }
     #num, #track { transition: opacity 0.2s ease; }
-    #cube { display: block; width: 65ch; margin: 2.5em auto 0; font-size: 0.7em; line-height: 1.05; color: #444; }
+    #cube { display: block; width: 65ch; margin: 30px auto 0; font-size: 0.7em; line-height: 1.05; color: #444; }
     @media (prefers-reduced-motion: reduce) { #num, #track { transition: none; } }
   </style>
 </head>
@@ -333,7 +333,10 @@
         }
       }
 
-      return grid.map((row) => row.join('').replace(/\s+$/, '')).join('\n');
+      const rows = grid.map((row) => row.join('').replace(/\s+$/, ''));
+      while (rows.length && !rows[0].trim()) rows.shift();
+      while (rows.length && !rows[rows.length - 1].trim()) rows.pop();
+      return rows.join('\n');
     }
 
     function stroke(grid, from, to) {
