@@ -6,7 +6,7 @@
   <title>heath</title>
   <style>
     body { max-width: 40em; margin: 4em auto; padding: 0 1em; line-height: 1.5; font-family: "Times New Roman", Times, serif; }
-    #track { transition: opacity 0.4s ease; }
+    #track { transition: opacity 0.2s ease; }
     @media (prefers-reduced-motion: reduce) { #track { transition: none; } }
   </style>
 </head>
@@ -157,7 +157,7 @@
     ];
 
     const track = document.getElementById('track');
-    const FADE_MS = 400;
+    const FADE_MS = 200;
     const HOLD_MS = 6000;
 
     const indexAt = (time) => Math.floor(time / HOLD_MS) % tracks.length;
