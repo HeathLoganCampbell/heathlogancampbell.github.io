@@ -384,6 +384,7 @@
     let pitch = 0.45;
     let lastInput = 0;
     let lastTick = Date.now();
+    let paused = false;
     const held = new Set();
 
     // the pointer acts as a point light hovering in front of the cube
@@ -424,7 +425,7 @@
       if (held.has('down')) pitch += spin;
       if (held.size) lastInput = now;
 
-      if (!still && !held.size) {
+      if (!still && !paused && !held.size) {
         const idle = now - lastInput;
         if (idle > IDLE_MS) {
           const ramp = Math.min(1, (idle - IDLE_MS) / RAMP_MS);
@@ -444,6 +445,11 @@
     }
 
     document.addEventListener('keydown', (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        paused = !paused;
+        return;
+      }
       const direction = DIRECTIONS[event.key.toLowerCase()];
       if (!direction) return;
       event.preventDefault();
