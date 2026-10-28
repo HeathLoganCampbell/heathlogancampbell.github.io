@@ -159,20 +159,25 @@
     const track = document.getElementById('track');
     const FADE_MS = 400;
     const HOLD_MS = 6000;
-    let trackIndex = Math.floor(Math.random() * tracks.length);
 
-    function showTrack() {
-      track.value = trackIndex + 1;
-      track.textContent = tracks[trackIndex];
+    const indexAt = (time) => Math.floor(time / HOLD_MS) % tracks.length;
+
+    function paint() {
+      const index = indexAt(Date.now());
+      track.value = index + 1;
+      track.textContent = tracks[index];
       track.style.opacity = 1;
-      trackIndex = (trackIndex + 1) % tracks.length;
     }
 
-    showTrack();
-    setInterval(() => {
-      track.style.opacity = 0;
-      setTimeout(showTrack, FADE_MS);
-    }, HOLD_MS);
+    function schedule() {
+      const now = Date.now();
+      const boundary = (Math.floor(now / HOLD_MS) + 1) * HOLD_MS;
+      setTimeout(() => { track.style.opacity = 0; }, boundary - FADE_MS - now);
+      setTimeout(() => { paint(); schedule(); }, boundary - now);
+    }
+
+    paint();
+    schedule();
   </script>
 </body>
 </html>
