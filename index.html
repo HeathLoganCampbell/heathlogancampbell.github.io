@@ -7,8 +7,9 @@
   <style>
     body { max-width: 40em; margin: 4em auto; padding: 0 1em; line-height: 1.5; font-family: "Times New Roman", Times, serif; }
     #track-list { list-style: none; }
-    #num { display: inline-block; min-width: 2.5ch; margin-right: 0.4em; transition: opacity 0.1s ease; }
-    #track { transition: opacity 0.2s ease 0.08s; }
+    #track-list li { position: relative; }
+    #num { position: absolute; right: 100%; margin-right: 0.2em; }
+    #num, #track { transition: opacity 0.2s ease; }
     @media (prefers-reduced-motion: reduce) { #num, #track { transition: none; } }
   </style>
 </head>
