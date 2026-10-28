@@ -21,6 +21,7 @@
     </ul>
 
     <h2>most listened to music</h2>
+    <p id="track"></p>
   </main>
 
   <script>
@@ -47,6 +48,120 @@
         status.textContent = '';
       }, 2000);
     });
+
+    const tracks = [
+      "The Beaches - Blame Brett",
+      "Verzache - Cable",
+      "Clubhouse - Weekend",
+      "Doov - Evil",
+      "Hucci, G Frsh, Gabrielle Aplin - Panic Cord",
+      "Declan McKenna - Brazil",
+      "glaive - astrid",
+      "Lil Peep, XXXTENTACION - Falling Down - Bonus Track",
+      "Glass Animals - Heat Waves",
+      "Ocean Alley - Confidence",
+      "d4vd - Feel It (From “Invincible”)",
+      "Eryn Martin - Namesez",
+      "TOKYO’S REVENGE - GOODMORNINGTOKYO!",
+      "girl in red - bad idea!",
+      "Jaymes Young - Habits of My Heart",
+      "Quinn XCII, blackbear - Am I High Rn (feat. blackbear)",
+      "HONNE, Georgia - Location Unknown ◐",
+      "Hailey Knox - Charismatic",
+      "Olivia Rodrigo - so american",
+      "Montell Fish, dj gummy bear - 2 seater",
+      "Sam Austins - Seasons",
+      "Bad Bunny, Tainy - Callaita",
+      "Maribou State, Gaidaa - Bloom",
+      "nimino - I Only Smoke When I Drink",
+      "Fred again.., Jozzy - ten",
+      "Jaydes Archive - Entry Four",
+      "Lonely God - Marlboro Nights",
+      "Hippo Campus - Bad Dream Baby",
+      "Fred again.., Baby Keem - leavemealone",
+      "JVKE - this is what heartbreak feels like",
+      "Distant Matter, fkblnde - u & i",
+      "Foster, Sody, Sarcastic Sounds - fools (can't help falling in love) (feat. Sody)",
+      "Tyler, The Creator, Doechii - Balloon (feat. Doechii)",
+      "Good Neighbours - Home",
+      "Djo - End of Beginning",
+      "Jacob Vallen, Tory Lanez - Wish I Never Met You",
+      "Lui Joseph - Knock Knock!",
+      "Badger, Natasha Bedingfield - These Words",
+      "Sean Jacobs - 2 Gone",
+      "Tate McRae, F1 The Album - Just Keep Watching (From F1® The Movie)",
+      "The Weeknd - False Alarm",
+      "Metro Boomin, Coi Leray - Self Love (Spider-Man: Across the Spider-Verse) (Metro Boomin & Coi Leray)",
+      "shinigami - Lite Brite",
+      "Artemas - you've been a bad girl",
+      "Rex Orange County - THREAT",
+      "Dominic Fike - misses",
+      "Joey Valence & Brae - PUNK TACTICS",
+      "Bazzi - Star",
+      "Artemas - just want u to feel something",
+      "Jonas Blue, felix jaehn - Weekends",
+      "Alfie Jukes - Cigarette",
+      "Chill Bump - Modern Man Intermission",
+      "Shaggy, Rik Rok - It Wasn't Me",
+      "Flume, KUČKA - Hyperreal",
+      "Quinn XCII - Stacy",
+      "Hanumankind, Kalmi - Big Dawgs",
+      "Fred again.., Skepta, PlaqueBoyMax - Victory Lap",
+      "The Neighbourhood - Daddy Issues",
+      "Madison Beer - make you mine",
+      "Rence - Baby Blue",
+      "KAMAUU - advantages",
+      "Emmit Fenn - The Chase",
+      "Chrystal, NOTION - The Days - NOTION Remix",
+      "Powfu, Rxseboy, Tia Tia, Shalfi - shade of blue (feat. Rxseboy, Tia Tia & Shalfi)",
+      "The Last Dinner Party - Nothing Matters",
+      "2hollis - poster boy",
+      "Fox Stevenson - Like That",
+      "Hozier - Too Sweet",
+      "Camélia Jordana - Moi c'est",
+      "Conan Gray - Bourgeoisieses",
+      "The Neighbourhood - Sweater Weather",
+      "Artemas - if u think i'm pretty",
+      "Fred again.. - Jungle",
+      "Kasien - DO WHAT I LIKE",
+      "Camila Cabello, Playboi Carti - I LUV IT (feat. Playboi Carti)",
+      "Aries - SANTA MONICA",
+      "Cheat Codes, DVBBS - I Love It",
+      "Cleffy - Meet you at the Graveyard",
+      "Disco Face - Daylight",
+      "Roy Woods, Drake - Drama (feat. Drake)",
+      "Lil Dicky - Going Gray",
+      "HYTYD, Pell - Down for the Weekend",
+      "Michael Aldag - girlfriends",
+      "Tom Vek, Glass Animals, Dave Glass Animals - C-C (You Set The Fire In Me) - Dave Glass Animals Remix",
+      "OneRepublic, Seeb - Rich Love (with Seeb)",
+      "Phoneboy, Justin Magnaye - Nevermind",
+      "MASN - Adrenaline",
+      "Balu Brigada - So Cold",
+      "Kito, Bea Miller, LP Giobbi - Steal My Clothes (ft. Bea Miller) – LP Giobbi Remix",
+      "Disco Lines, Gabriella - Honey",
+      "Lost Frequencies, Tom Odell - Black Friday (pretty like the sun)",
+      "DIRTYXAN - MAMBO",
+      "Lil Peep - Save That Shit",
+      "VALORANT, Jean Deaux, WHIPPED CREAM - All Eyes On Me",
+      "Milco - darling don't be so shy",
+      "MF DOOM - Hoe Cakes",
+      "campthehills - she want",
+      "Artemas - cross my heart",
+      "MAX, bbno$ - Working For The Weekend (feat. bbno$)",
+      "Arcane, d4vd - Remember Me (from the series Arcane League of Legends)"
+    ];
+
+    const track = document.getElementById('track');
+    let trackIndex = Math.floor(Math.random() * tracks.length);
+
+    function nextTrack() {
+      track.textContent = tracks[trackIndex];
+      trackIndex = (trackIndex + 1) % tracks.length;
+    }
+
+    nextTrack();
+    setInterval(nextTrack, 6000);
   </script>
 </body>
 </html>
