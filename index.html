@@ -26,7 +26,7 @@
 
     <h2>most listened to music</h2>
     <ul id="track-list">
-      <li><span id="num"></span><span id="track"></span></li>
+      <li><span id="num"></span><a id="track" target="_blank" rel="noopener noreferrer"></a></li>
     </ul>
   </main>
 
@@ -167,8 +167,10 @@
 
     function paint() {
       const index = indexAt(Date.now());
+      const title = tracks[index];
       num.textContent = (index + 1) + '.';
-      track.textContent = tracks[index];
+      track.textContent = title;
+      track.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(title);
       num.style.opacity = 1;
       track.style.opacity = 1;
     }
