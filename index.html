@@ -6,6 +6,8 @@
   <title>heath</title>
   <style>
     body { max-width: 40em; margin: 4em auto; padding: 0 1em; line-height: 1.5; font-family: "Times New Roman", Times, serif; }
+    #track { transition: opacity 0.4s ease; }
+    @media (prefers-reduced-motion: reduce) { #track { transition: none; } }
   </style>
 </head>
 <body>
@@ -155,15 +157,21 @@
     ];
 
     const track = document.getElementById('track');
+    const FADE_MS = 400;
+    const HOLD_MS = 6000;
     let trackIndex = Math.floor(Math.random() * tracks.length);
 
-    function nextTrack() {
+    function showTrack() {
       track.textContent = (trackIndex + 1) + '. ' + tracks[trackIndex];
+      track.style.opacity = 1;
       trackIndex = (trackIndex + 1) % tracks.length;
     }
 
-    nextTrack();
-    setInterval(nextTrack, 6000);
+    showTrack();
+    setInterval(() => {
+      track.style.opacity = 0;
+      setTimeout(showTrack, FADE_MS);
+    }, HOLD_MS);
   </script>
 </body>
 </html>
