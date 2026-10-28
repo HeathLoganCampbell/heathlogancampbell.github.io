@@ -6,8 +6,10 @@
   <title>heath</title>
   <style>
     body { max-width: 40em; margin: 4em auto; padding: 0 1em; line-height: 1.5; font-family: "Times New Roman", Times, serif; }
-    #track { transition: opacity 0.2s ease; }
-    @media (prefers-reduced-motion: reduce) { #track { transition: none; } }
+    #track-list { list-style: none; }
+    #num { display: inline-block; min-width: 2.5ch; margin-right: 0.4em; transition: opacity 0.1s ease; }
+    #track { transition: opacity 0.2s ease 0.08s; }
+    @media (prefers-reduced-motion: reduce) { #num, #track { transition: none; } }
   </style>
 </head>
 <body>
@@ -23,9 +25,9 @@
     </ul>
 
     <h2>most listened to music</h2>
-    <ol>
-      <li id="track"></li>
-    </ol>
+    <ul id="track-list">
+      <li><span id="num"></span><span id="track"></span></li>
+    </ul>
   </main>
 
   <script>
@@ -156,6 +158,7 @@
       "Arcane, d4vd - Remember Me (from the series Arcane League of Legends)"
     ];
 
+    const num = document.getElementById('num');
     const track = document.getElementById('track');
     const FADE_MS = 200;
     const HOLD_MS = 6000;
@@ -164,15 +167,19 @@
 
     function paint() {
       const index = indexAt(Date.now());
-      track.value = index + 1;
+      num.textContent = (index + 1) + '.';
       track.textContent = tracks[index];
+      num.style.opacity = 1;
       track.style.opacity = 1;
     }
 
     function schedule() {
       const now = Date.now();
       const boundary = (Math.floor(now / HOLD_MS) + 1) * HOLD_MS;
-      setTimeout(() => { track.style.opacity = 0; }, boundary - FADE_MS - now);
+      setTimeout(() => {
+        num.style.opacity = 0;
+        track.style.opacity = 0;
+      }, boundary - FADE_MS - now);
       setTimeout(() => { paint(); schedule(); }, boundary - now);
     }
 
